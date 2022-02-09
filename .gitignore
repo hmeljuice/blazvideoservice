@@ -135,4 +135,4 @@ dmypy.json
 *.sqlite3
 
 # ENV VARIABLES
-.env
+# .env
