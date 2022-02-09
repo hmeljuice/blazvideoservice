@@ -1,1 +1,1 @@
-web: gunicorn streamingplatform.streamingplatform.wsgi --log-file -
+web: gunicorn streamingplatform.wsgi --log-file -
