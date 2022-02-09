@@ -1,0 +1,1 @@
+web: gunicorn streamingplatform.streamingplatform.wsgi --log-file -

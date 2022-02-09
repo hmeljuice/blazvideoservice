@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>Zdaj smo v videu detajlu</p>
+{% if video_list %}
+    {% for el in video_list %}
+        <video controls="controls">
+            <source src="{{el.file_location.url}}" type="video/mp4"/>
+        </video>
+    {% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="login-link">
+    <span>Welcome, {{ user.get_username }}!   </span>
+    <span> <a href="{% url 'login' %}">Press here to log in again</a></span>
+</div>
+
+<div class="stream-body">
+
+
+        {% if videos %}
+        {% csrf_token %}
+            <div class="web-container">
+            {% for el in videos %}
+                <div class="web-item">
+                    <video controls preload="none">
+                        <source src="{{el.file_location.url}}" type="video/mp4"/>
+                    </video><br>
+                    <h4>{{ el.title }}</h4>
+                    <p>{{ el.description }}</p>
+                </div>
+            {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-videos">
+                <p>You have no videos.</p>
+                <p>Please contact administrator.</p>
+            </div>
+        {% endif %}
+    </div>
+{% endif %}
+
+{% endblock %}
