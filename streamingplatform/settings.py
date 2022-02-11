@@ -35,7 +35,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['blazvideoservice.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = [env('ALLOWED_HOSTS'), '127.0.0.1']
 
 
 # Application definition
@@ -94,6 +94,12 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
     'default': {
+        # 'ENGINE': env('ENGINE'),
+        # 'NAME': env('NAME'),
+        # 'USER': env('USER'),
+        # 'PASSWORD': env('PASSWORD'),
+        # 'HOST': env('HOST'),
+        # 'PORT': env('PORT'),
     }
 }
 
@@ -141,8 +147,8 @@ STATIC_URL = '/static/'
 #     os.path.join(BASE_DIR, 'streaming/static')
 # }
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = ''
+MEDIA_URL = env('MEDIA_URL')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -154,14 +160,14 @@ LOGIN_REDIRECT_URL = '/streaming/'
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 #S3 BUCKET CONFIG
 
-AWS_ACCESS_KEY_ID = ""
-AWS_SECRET_ACCESS_KEY = ""
-AWS_STORAGE_BUCKET_NAME = ""
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
